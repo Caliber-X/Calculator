@@ -13,7 +13,6 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-
 class Ui_Frame(object):
     def setupUi(self, Frame):
         if not Frame.objectName():
