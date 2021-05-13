@@ -2,9 +2,12 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication
 import sys
 
-# Pre-compile UI file
+# .ui -> .py
 import os
-os.system("pyuic5 calc.ui -o ui_calc.py")
+if os.path.exists("calc.ui"):
+    os.system("pyuic5 calc.ui -o ui_calc.py")
+elif os.path.exists("ui_calc.py") == False:
+    sys.exit("No UI file") 
 import ui_calc
 
 class UI(QtWidgets.QMainWindow, ui_calc.Ui_MainWindow):
@@ -14,8 +17,8 @@ class UI(QtWidgets.QMainWindow, ui_calc.Ui_MainWindow):
 
 def main():
     app = QApplication(sys.argv)
-    form = UI()
-    form.show()
+    win = UI()
+    win.show()
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
