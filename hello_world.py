@@ -1,4 +1,5 @@
 import sys
+from PyQt5 import QtGui
 
 # 1. Import `QApplication` and all the required widgets
 from PyQt5.QtWidgets import QApplication, QLabel, QWidget
