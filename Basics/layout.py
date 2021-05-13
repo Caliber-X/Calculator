@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtCore import left
 
-from PyQt5.QtWidgets import QApplication, QHBoxLayout, QPushButton, QVBoxLayout, QWidget, QLabel
+from PyQt5.QtWidgets import QApplication, QHBoxLayout, QPushButton, QVBoxLayout, QWidget
 
 app = QApplication(sys.argv)
 
