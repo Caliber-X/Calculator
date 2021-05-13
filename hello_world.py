@@ -1,5 +1,4 @@
 import sys
-from PyQt5 import QtGui
 
 # 1. Import `QApplication` and all the required widgets
 from PyQt5.QtWidgets import QApplication, QLabel, QWidget
@@ -8,7 +7,7 @@ from PyQt5.QtWidgets import QApplication, QLabel, QWidget
 app = QApplication(sys.argv)
 
 # 3. Create an instance of your application's GUI
-window = QWidget
+window = QWidget()
 window.setWindowTitle("PyQt5 App")
 window.setGeometry(100, 100, 280, 80)
 window.move(60, 15)
