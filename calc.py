@@ -1,5 +1,4 @@
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 
 # .ui -> .py
@@ -8,9 +7,9 @@ if os.path.exists("calc.ui"):
     os.system("pyuic5 calc.ui -o ui_calc.py")
 elif os.path.exists("ui_calc.py") == False:
     sys.exit("No UI file") 
-import ui_calc
+from ui_calc import Ui_MainWindow
 
-class UI(QtWidgets.QMainWindow, ui_calc.Ui_MainWindow):
+class UI(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(UI, self).__init__(parent)
         self.setupUi(self)
