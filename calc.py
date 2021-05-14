@@ -1,6 +1,6 @@
+from ui_calc import Ui_MainWindow
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
-from processing import processing
 
 # .ui -> .py
 import os
@@ -10,6 +10,8 @@ if os.path.exists("calc.ui") and getstatusoutput("pyuic5 calc.ui -o ui_calc.py")
     ui2py_flag = True
 if ui2py_flag == False and os.path.exists("ui_calc.py") == False:
     sys.exit("No UI file") 
+
+from processing import processing
 
 class Window(QMainWindow, processing):
     def __init__(self, parent=None):
