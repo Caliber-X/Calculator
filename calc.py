@@ -3,9 +3,11 @@ import sys
 
 # .ui -> .py
 import os
-if os.path.exists("calc.ui"):
-    os.system("pyuic5 calc.ui -o ui_calc.py")
-elif os.path.exists("ui_calc.py") == False:
+from subprocess import getstatusoutput
+ui2py_flag = False
+if os.path.exists("calc.ui") and getstatusoutput("pyuic5 calc.ui -o ui_calc.py")[0] == False:
+    ui2py_flag = True
+if ui2py_flag == False and os.path.exists("ui_calc.py") == False:
     sys.exit("No UI file") 
 from ui_calc import Ui_MainWindow
 
