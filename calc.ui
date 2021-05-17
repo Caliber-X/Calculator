@@ -9,13 +9,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>366</width>
+    <width>300</width>
     <height>350</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>0</width>
+    <width>300</width>
     <height>350</height>
    </size>
   </property>
@@ -57,16 +57,6 @@
        <property name="horizontalSpacing">
         <number>6</number>
        </property>
-       <item row="4" column="2">
-        <widget class="QPushButton" name="pushButton_ans">
-         <property name="text">
-          <string>Ans</string>
-         </property>
-         <property name="autoDefault">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
        <item row="6" column="3">
         <widget class="QPushButton" name="pushButton_divide">
          <property name="text">
@@ -195,7 +185,7 @@
          </property>
         </widget>
        </item>
-       <item row="11" column="1">
+       <item row="12" column="1">
         <widget class="QPushButton" name="pushButton_dot">
          <property name="text">
           <string>.</string>
@@ -227,7 +217,7 @@
          </property>
         </widget>
        </item>
-       <item row="11" column="0">
+       <item row="12" column="0">
         <widget class="QPushButton" name="pushButton_0">
          <property name="text">
           <string>0</string>
@@ -291,32 +281,6 @@
          </property>
         </widget>
        </item>
-       <item row="11" column="3">
-        <widget class="QPushButton" name="pushButton_add">
-         <property name="text">
-          <string>+</string>
-         </property>
-         <property name="autoDefault">
-          <bool>true</bool>
-         </property>
-         <property name="default">
-          <bool>false</bool>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="4">
-        <widget class="QLineEdit" name="text_input">
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0">
         <spacer name="verticalSpacer">
          <property name="orientation">
@@ -349,23 +313,7 @@
          </property>
         </spacer>
        </item>
-       <item row="4" column="3">
-        <widget class="QPushButton" name="pushButton_mod">
-         <property name="text">
-          <string>%</string>
-         </property>
-         <property name="autoDefault">
-          <bool>true</bool>
-         </property>
-         <property name="default">
-          <bool>false</bool>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" colspan="4">
+       <item row="0" column="0" colspan="5">
         <widget class="QTextBrowser" name="text_output">
          <property name="minimumSize">
           <size>
@@ -382,7 +330,112 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="12" column="2">
+        <widget class="QPushButton" name="pushButton_mod">
+         <property name="text">
+          <string>%</string>
+         </property>
+         <property name="autoDefault">
+          <bool>true</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="5">
+        <widget class="QLineEdit" name="text_input">
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="3">
+        <widget class="QPushButton" name="pushButton_add">
+         <property name="text">
+          <string>+</string>
+         </property>
+         <property name="autoDefault">
+          <bool>true</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="12" column="4">
+        <widget class="QPushButton" name="pushButton_exp">
+         <property name="text">
+          <string>^</string>
+         </property>
+         <property name="autoDefault">
+          <bool>true</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="4">
+        <widget class="QPushButton" name="pushButton_brac_open">
+         <property name="text">
+          <string>(</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="4">
+        <widget class="QPushButton" name="pushButton_brac_close">
+         <property name="text">
+          <string>)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="4">
+        <widget class="QPushButton" name="pushButton_root">
+         <property name="text">
+          <string>√</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="4">
+        <widget class="QPushButton" name="pushButton_equals">
+         <property name="text">
+          <string>=</string>
+         </property>
+         <property name="autoDefault">
+          <bool>true</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QPushButton" name="pushButton_ans">
+         <property name="text">
+          <string>Ans</string>
+         </property>
+         <property name="autoDefault">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
         <widget class="QPushButton" name="pushButton_clear">
          <property name="text">
           <string>Clear</string>
@@ -398,7 +451,7 @@ p, li { white-space: pre-wrap; }
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="4" column="0" colspan="2">
         <widget class="QLabel" name="output_msg">
          <property name="frameShape">
           <enum>QFrame::WinPanel</enum>
@@ -408,22 +461,6 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="2">
-        <widget class="QPushButton" name="pushButton_equals">
-         <property name="text">
-          <string>=</string>
-         </property>
-         <property name="autoDefault">
-          <bool>true</bool>
-         </property>
-         <property name="default">
-          <bool>false</bool>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -447,12 +484,16 @@ p, li { white-space: pre-wrap; }
   <tabstop>pushButton_8</tabstop>
   <tabstop>pushButton_9</tabstop>
   <tabstop>pushButton_dot</tabstop>
-  <tabstop>pushButton_equals</tabstop>
+  <tabstop>pushButton_mod</tabstop>
   <tabstop>pushButton_add</tabstop>
   <tabstop>pushButton_subtract</tabstop>
   <tabstop>pushButton_multiply</tabstop>
   <tabstop>pushButton_divide</tabstop>
-  <tabstop>pushButton_mod</tabstop>
+  <tabstop>pushButton_brac_open</tabstop>
+  <tabstop>pushButton_brac_close</tabstop>
+  <tabstop>pushButton_root</tabstop>
+  <tabstop>pushButton_exp</tabstop>
+  <tabstop>pushButton_equals</tabstop>
   <tabstop>pushButton_ans</tabstop>
   <tabstop>pushButton_clear</tabstop>
   <tabstop>text_output</tabstop>
