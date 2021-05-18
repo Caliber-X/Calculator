@@ -19,6 +19,7 @@ class processing(Ui_MainWindow):
         super(processing,self).__init__()
         self.expression = ""
         self.ans = 0
+        self.cache = ""
         
     def connectSignals2Slots(self, _) -> None:
 
@@ -74,14 +75,24 @@ class processing(Ui_MainWindow):
             self.output_msg.setText("Invalid")
 
     def move2_output_field(self) -> None:
-        print("ENTER Pressed")
+        cache = self.text_input.text() + " = " + str(self.ans)
+        self.cache = cache + "\n\n" + self.cache
+        self.text_output.setText(self.cache)
+        self.text_input.setText(str(self.ans))
+        self.expression = str(self.ans)
+        self.output_msg.clear()
 
+    # def eval(self, st):
+    #     print("EVAl")
 
 
     """KEY Press Event for Keys -> Button Click Map"""
     def keyPressEvent(self, event):
         
-        if event.key() == Qt.Key.Key_1:
+        if event.key() == Qt.Key.Key_0:
+            self.pushButton_0.animateClick()
+
+        elif event.key() == Qt.Key.Key_1:
             self.pushButton_1.animateClick()
 
         elif event.key() == Qt.Key.Key_2:
