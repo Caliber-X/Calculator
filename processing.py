@@ -19,9 +19,12 @@ class processing(Ui_MainWindow):
         super(processing,self).__init__()
         self.expression = ""
         self.ans = 0
-        self.cache = ""
+        self._cache = ""
+        self._valid = False
         
     def connectSignals2Slots(self, _) -> None:
+
+        self.scrollbar = self.text_output.verticalScrollBar()
 
         # COMPUTE <- Text Field Changes
         self.text_input.textChanged[str].connect(self.compute)
@@ -53,37 +56,44 @@ class processing(Ui_MainWindow):
         self.pushButton_root.clicked.connect    (lambda : self.update_expression("√"))
         self.pushButton_exp.clicked.connect     (lambda : self.update_expression("^"))
         self.pushButton_clear.clicked.connect   (lambda : self.update_expression("cls"))
-        self.pushButton_equals.clicked.connect  (self.move2_output_field)
-        
+        self.pushButton_equals.clicked.connect  (self.enter_pressed)
+        self.pushButton_ans.clicked.connect     (lambda : self.update_expression("ans"))
 
     def update_expression(self, st) -> None:
         if st == "cls":
             self.expression = ""
         elif st == "backspace":
             self.expression = self.expression[:-1]
+        elif st == "ans":
+            self.expression += "ans"
         else:
             self.expression += st
         self.text_input.setText(self.expression)
 
     def compute(self) -> None:
         try:
-            val = eval(self.text_input.text().replace("^","**"))
+            val = eval(self.text_input.text().replace("^","**").replace("ans", str(self.ans)))
             print(val)
             self.output_msg.setText(str(val))
-            self.ans = val
+            self._valid = True
         except:
             self.output_msg.setText("Invalid")
+            self._valid = False
 
-    def move2_output_field(self) -> None:
+    def enter_pressed(self) -> None:
+        self.ans = self.output_msg.text()
+        if (not self._valid):
+            return
         cache = self.text_input.text() + " = " + str(self.ans)
-        self.cache = cache + "\n\n" + self.cache
-        self.text_output.setText(self.cache)
+        # Total cached data
+        self._cache += "\n\n" + cache
+        # OUTPUT Field + SCROLL BOTTOM
+        self.text_output.setText(self._cache)
+        self.scrollbar.setValue(self.scrollbar.maximum())
+        # Change input 
         self.text_input.setText(str(self.ans))
         self.expression = str(self.ans)
-        self.output_msg.clear()
-
-    # def eval(self, st):
-    #     print("EVAl")
+        self.output_msg.clear()                 # Clear Msg Field
 
 
     """KEY Press Event for Keys -> Button Click Map"""
