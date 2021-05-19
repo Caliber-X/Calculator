@@ -1,12 +1,13 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QKeySequence
+from PyQt5.QtWidgets import QTabWidget
 from ui_calc import Ui_MainWindow
 
 """
-    Functionalities to implement
+    # # # Functionalities # # #
 
+    All Buttons                     ->      Input Text Field
+    Keyboard Entry                  ->      Input Text Field
     Input Text Field                ->      Calculate Process
-    All Buttons, Keyboard Entry     ->      Input Text Field
     Clear                           ->      Clear Text Field
     =                               ->      Moves Expression to Output Field & Ans from Down Field to Input Field
     Ans                             ->      Contains the Previous ans
@@ -21,6 +22,11 @@ class processing(Ui_MainWindow):
         self.ans = 0
         self._cache = ""
         self._valid = False
+        # Valid Chars
+        self.valid_chars = ""
+        for i in range(10):
+            self.valid_chars += str(i)
+        self.valid_chars += ".+-*/%^()"
         
     def connectSignals2Slots(self, _) -> None:
 
@@ -72,13 +78,25 @@ class processing(Ui_MainWindow):
 
     def compute(self) -> None:
         try:
-            val = eval(self.text_input.text().replace("^","**").replace("ans", str(self.ans)))
+            text = str.lower(self.text_input.text()).replace("^","**").replace("ans", str(self.ans))
+            # val = eval(text)
+            val = self.evaluate(text)
             print(val)
             self.output_msg.setText(str(val))
             self._valid = True
         except:
             self.output_msg.setText("Invalid")
             self._valid = False
+
+    def evaluate(self, st) -> int:
+        flag = 0
+        for char in st:
+            if char not in st:
+                flag = 1
+                break
+        if flag == 1:
+            raise Exception
+        return eval(st)
 
     def enter_pressed(self) -> None:
         self.ans = self.output_msg.text()
@@ -95,6 +113,9 @@ class processing(Ui_MainWindow):
         self.expression = str(self.ans)
         self.output_msg.clear()                 # Clear Msg Field
 
+    # @property
+    # def eval(st):
+    #     print("EVAL")
 
     """KEY Press Event for Keys -> Button Click Map"""
     def keyPressEvent(self, event):
