@@ -1,4 +1,3 @@
-from ui_calc import Ui_MainWindow
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 
