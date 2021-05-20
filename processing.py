@@ -31,14 +31,10 @@ class processing(Ui_MainWindow):
 
         self.scrollbar = self.text_output.verticalScrollBar()
 
-        # COMPUTE <- Text Field Changes
+        # Text Field Changes -> Update Expression + COMPUTE
         self.text_input.textChanged[str].connect(self.compute)
 
         """INPUTS"""
-
-        # Change Input Field Directly
-        self.expression = self.text_input.text()
-
         # Buttons Click -> Form Expression
         self.pushButton_0.clicked.connect       (lambda : self.update_expression("0"))
         self.pushButton_1.clicked.connect       (lambda : self.update_expression("1"))
@@ -73,9 +69,12 @@ class processing(Ui_MainWindow):
             self.expression += "ans"
         else:
             self.expression += st
+        # Maintain Sync between Input_Text_Field & Expression
         self.text_input.setText(self.expression)
 
     def compute(self) -> None:
+        # Maintain Sync between Input_Text_Field & Expression
+        self.expression = self.text_input.text()
         try:
             text = str.lower(self.text_input.text()).replace("^","**").replace("ans", str(self.ans))
             # val = eval(text)
