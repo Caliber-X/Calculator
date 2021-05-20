@@ -408,7 +408,7 @@ p, li { white-space: pre-wrap; }
        <item row="2" column="0" colspan="5">
         <widget class="QLineEdit" name="text_input">
          <property name="focusPolicy">
-          <enum>Qt::TabFocus</enum>
+          <enum>Qt::StrongFocus</enum>
          </property>
          <property name="autoFillBackground">
           <bool>false</bool>

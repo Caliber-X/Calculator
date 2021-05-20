@@ -151,7 +151,7 @@ class Ui_MainWindow(object):
         self.pushButton_mod.setObjectName("pushButton_mod")
         self.gridLayout.addWidget(self.pushButton_mod, 12, 2, 1, 1)
         self.text_input = QtWidgets.QLineEdit(self.gridWidget)
-        self.text_input.setFocusPolicy(QtCore.Qt.TabFocus)
+        self.text_input.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.text_input.setAutoFillBackground(False)
         self.text_input.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.text_input.setReadOnly(False)
