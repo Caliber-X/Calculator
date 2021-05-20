@@ -1,5 +1,4 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QTabWidget
 from ui_calc import Ui_MainWindow
 
 """
