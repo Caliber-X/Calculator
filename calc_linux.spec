@@ -1,11 +1,10 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-
 block_cipher = None
 
 
 a = Analysis(['calc.py'],
-             pathex=['C:\\Users\\Caliber X\\Documents\\Python Code\\Calculator'],
+             pathex=['/home/wot-shuvam/Calculator'],
              binaries=[],
              datas=[],
              hiddenimports=[],
