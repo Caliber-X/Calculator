@@ -1,6 +1,8 @@
 from PyQt5.QtCore import Qt
 from ui_calc import Ui_MainWindow
 
+root = "√"
+
 """
     # # # Functionalities # # #
 
@@ -25,7 +27,7 @@ class processing(Ui_MainWindow):
         self.valid_chars = ""
         for i in range(10):
             self.valid_chars += str(i)
-        self.valid_chars += ".+-*/%^()"
+        self.valid_chars += ".+-*/%^()" + root
         
     def connectSignals2Slots(self, _) -> None:
 
@@ -54,12 +56,13 @@ class processing(Ui_MainWindow):
         self.pushButton_mod.clicked.connect     (lambda : self.update_expression("%"))
         self.pushButton_brac_open.clicked.connect(lambda : self.update_expression("("))
         self.pushButton_brac_close.clicked.connect(lambda : self.update_expression(")"))
-        self.pushButton_root.clicked.connect    (lambda : self.update_expression("√"))
+        self.pushButton_root.clicked.connect    (lambda : self.update_expression(root))
         self.pushButton_exp.clicked.connect     (lambda : self.update_expression("^"))
         self.pushButton_clear.clicked.connect   (lambda : self.update_expression("cls"))
         self.pushButton_equals.clicked.connect  (self.enter_pressed)
         self.pushButton_ans.clicked.connect     (lambda : self.update_expression("ans"))
 
+    # Update Expression on Button Click
     def update_expression(self, st) -> None:
         if st == "cls":
             self.expression = ""
@@ -72,33 +75,7 @@ class processing(Ui_MainWindow):
         # Maintain Sync between Input_Text_Field & Expression
         self.text_input.setText(self.expression)
 
-    def compute(self) -> None:
-        # Maintain Sync between Input_Text_Field & Expression
-        self.expression = self.text_input.text()
-        try:
-            text = str.lower(self.text_input.text()).replace("^","**").replace("ans", str(self.ans))
-            # val = eval(text)
-            val = self.evaluate(text)
-            print(val)
-            self.output_msg.setText(str(val))
-            self._valid = True
-        except:
-            self.output_msg.setText("Invalid")
-            self._valid = False
-
-    def evaluate(self, st) -> int:
-        flag = 0
-        for char in st:
-            if char not in self.valid_chars:
-                flag = 1
-                break
-        if flag == 1:
-            raise Exception
-        
-        # Square Root functionality
-
-        return eval(st)
-
+    # Press Enter or =
     def enter_pressed(self) -> None:
         self.ans = self.output_msg.text()
         if (not self._valid or self.output_msg.text() == ""):
@@ -113,6 +90,62 @@ class processing(Ui_MainWindow):
         self.text_input.setText(str(self.ans))
         self.expression = str(self.ans)
         self.output_msg.clear()                 # Clear Msg Field
+
+    # Compute on Input Field Change
+    def compute(self) -> None:
+        # Maintain Sync between Input_Text_Field & Expression
+        self.expression = self.text_input.text()
+        try:
+            text = str.lower(self.text_input.text()).replace("^","**").replace("ans", str(self.ans))
+            val = self.evaluate(text)
+            print("{} -> {}".format(text, val))
+            self.output_msg.setText(str(val))
+            self._valid = True
+        except:
+            self.output_msg.setText("Invalid")
+            self._valid = False
+
+    # Helper evaluation function to handle security exceptions and square root functionality
+    def evaluate(self, st) -> int:
+        flag = 0
+
+        # Security -> Anything undefined will not be compiled
+        for char in st:
+            if char not in self.valid_chars:
+                flag = 1
+                break
+        if flag == 1:
+            raise Exception
+
+        # Square Root functionality
+        if root in st:
+            st = self._sq_root(st)
+
+        return eval(st)
+
+    # Helper function to mangle root expressions
+    def _sq_root(self, st):
+        # Mangles the String from √x -> x^0.5
+        new_str = ""
+        skip = 0
+        for i in range(len(st)):
+            i += skip
+            if i >= len(st):
+                break
+            if st[i] == root:
+                j = i+1
+                while(st[j] in "0123456789."):
+                    j+=1
+                    if j >= len(st):
+                        break
+                replacement = "("+st[i+1:j]+"**0.5)"
+                if st[i-1] in "0123456789" and i != 0:
+                    replacement = "*" + replacement
+                new_str += replacement
+                skip += j - i - 1
+            else:
+                new_str += st[i]
+        return new_str
 
 
     """KEY Press Event for Keys -> Button Click Map"""
