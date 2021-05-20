@@ -89,16 +89,19 @@ class processing(Ui_MainWindow):
     def evaluate(self, st) -> int:
         flag = 0
         for char in st:
-            if char not in st:
+            if char not in self.valid_chars:
                 flag = 1
                 break
         if flag == 1:
             raise Exception
+        
+        # Square Root functionality
+
         return eval(st)
 
     def enter_pressed(self) -> None:
         self.ans = self.output_msg.text()
-        if (not self._valid):
+        if (not self._valid or self.output_msg.text() == ""):
             return
         cache = self.text_input.text() + " = " + str(self.ans)
         # Total cached data
@@ -111,9 +114,6 @@ class processing(Ui_MainWindow):
         self.expression = str(self.ans)
         self.output_msg.clear()                 # Clear Msg Field
 
-    # @property
-    # def eval(st):
-    #     print("EVAL")
 
     """KEY Press Event for Keys -> Button Click Map"""
     def keyPressEvent(self, event):
@@ -181,6 +181,9 @@ class processing(Ui_MainWindow):
         elif event.key() == Qt.Key.Key_Enter or event.key() == Qt.Key.Key_Return:
             self.pushButton_equals.animateClick()
         
+        elif event.key() == Qt.Key.Key_A:
+            self.pushButton_ans.animateClick()
+
         else:
             pass
 
